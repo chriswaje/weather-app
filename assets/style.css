@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    color: black;
+}
+
+body {
+    background-color: rgb(80, 77, 77);
+}
+
+header {
+    background-color: rgb(114, 50, 173);
+    padding: 20px;
+}
+
+h1 {
+    font-size: 40px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    border: dashed red 1px;
+    padding: 5px;
+    margin: 10px;
+    height: 50vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+}
+
+aside {
+    border: dashed blue 1px;
+    padding: 5px;
+    display: flex;
+    flex-flow: column wrap;
+    flex-basis: 13%;
+    justify-content: start;
+}
+
+.search-city {
+    border-bottom: solid white 2px;
+    padding-bottom: 10px;
+}
+
+.search-city h2 {
+    font-size: 23px;
+    font-weight: boldest;
+    margin: 5px;
+}
+
+.search-city input {
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.search-city button {
+    border-radius: 5px;
+    background-color: rgb(114, 50, 173);
+    color: white;
+    font-size: 20px;
+    margin: 5px;
+    display: flex;
+    width: 95%;
+    height: 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    border: dashed green 1px;
+    display: flex;
+    flex-flow: column wrap;
+    flex-basis: 83%;
+}
+
+.current-forecast {
+    border: dashed white 1px;
+    height: 250px;
+}
+
+.future-forecast {
+    border: dashed yellow 1px;
+    height: 250px;
+    display: flex;
+    flex-flow: row wrap;
+}
