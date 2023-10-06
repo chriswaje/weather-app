@@ -90,3 +90,6 @@ section {
     flex-flow: row wrap;
 }
 
+.future-card {
+    border: dashed blue 1px;
+}
