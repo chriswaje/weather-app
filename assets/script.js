@@ -31,6 +31,19 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${city}
 
 function displayCurrentWeather(data) {
     document.querySelector('.current-city').textContent = data.name;
+    var card = document.createElement('div');
+    card.classList.add('current-card');
+    var icon = document.createElement('img');
+    icon.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+    var temp = document.createElement('p');
+    temp.textContent = `Temp: ${data.main.temp}`;
+    var wind = document.createElement('p');
+    wind.textContent = `Wind: ${data.wind.speed}`;
+    var humidity = document.createElement('p');
+    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    card.append(icon, temp, wind, humidity);
+    document.querySelector('.current-cast').append(card);
+
 }
 
 function displayForecast(list) {
@@ -41,7 +54,13 @@ function displayForecast(list) {
         date.textContent = dayjs.unix(list[i].dt).format('MM/DD/YY');
         var icon = document.createElement('img');
         icon.src = `https://openweathermap.org/img/w/${list[i].weather[0].icon}.png`;
-        card.append(date, icon);
+        var temp = document.createElement('p');
+        temp.textContent = `Temp: ${list[i].main.temp}`;
+        var wind = document.createElement('p');
+        wind.textContent = `Wind: ${list[i].wind.speed}`;
+        var humidity = document.createElement('p');
+        humidity.textContent = `Humidity: ${list[i].main.humidity}%`;
+        card.append(date, icon, temp, wind, humidity);
         document.querySelector('.future-forecast').append(card);
     }
 }
@@ -63,7 +82,6 @@ function handleCitiesListSubmit (e) {
 
 
 searchBtnEl.addEventListener('click', handleSearchSubmit)
-citiesListEl.addEventListener('click', handleSearchSubmit )
 
 function displayCities() {
 
