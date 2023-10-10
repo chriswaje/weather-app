@@ -4,9 +4,12 @@ var citySearchEl = document.querySelector('.search-city')
 var searchBtnEl = document.querySelector('.search-button');
 var cityInput = document.querySelector('input');
 var currentCity = document.querySelector('.current-city');
+var currentDisplay = document.querySelector('.current-forecast');
+var futureDisplay = document.querySelector('.future-forecast')
 var citiesBtnList = JSON.parse(localStorage.getItem('city')) || [];
 
 
+// function to fetch weather by city name and then by longitude/latitude
 function fetchWeather (city) {
 fetch(`https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${city}&units=imperial`)
     .then(function (response) {
@@ -29,6 +32,7 @@ fetch(`https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${city}
 }
 
 
+// function to display the current weather using first fetch request
 function displayCurrentWeather(data) {
     document.querySelector('.current-city').textContent = data.name;
     var card = document.createElement('div');
@@ -46,6 +50,7 @@ function displayCurrentWeather(data) {
 
 }
 
+// function to display the forecast for next 5 days using second fetch request
 function displayForecast(list) {
     for (i = 7; i < list.length; i += 8) {
         var card = document.createElement('div');
@@ -65,33 +70,17 @@ function displayForecast(list) {
     }
 }
 
-
+// displays the current weather of last searched city
 function handleSearchSubmit (e) {
-    fetchWeather(citiesBtnList);
+    document.querySelector('.current-cast').setHTML('');
+    document.querySelector('.future-forecast').setHTML('');
     citiesBtnList.push(cityInput.value);
     localStorage.setItem('city', JSON.stringify(citiesBtnList));
-    displayCities();
-}
-
-function handleCitiesListSubmit (e) {
-  if (!e.target.matches ('.cities-Btn')) {
-    return
-  } 
-  fetchWeather(e.target.textContent)
+    fetchWeather(cityInput.value);
+    cityInput.value = '';
 }
 
 
-searchBtnEl.addEventListener('click', handleSearchSubmit)
+searchBtnEl.addEventListener('click', handleSearchSubmit);
 
-function displayCities() {
-
-    for (i = 0; i < citiesBtnList.length; i++) {
-        var citiesBtn = document.createElement('button');
-        citiesBtn.append(citiesBtnList[i]);
-        citiesBtn.classList.add('cities-Btn');
-        citiesListEl.append(citiesBtn)
-    }
-}
-
-displayCities();
 
