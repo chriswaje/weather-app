@@ -87,8 +87,8 @@ function displayForecast(list) {
 
 // displays the current weather of last searched city
 function handleSearchSubmit() {
-    document.querySelector('.current-cast').setHTML('');
-    document.querySelector('.future-forecast').setHTML('');
+    document.querySelector('.current-cast').innerHTML = '';
+    document.querySelector('.future-forecast').innerHTML = '';
     fetchWeather(cityInput.value);
     cityInput.value = '';
 }
